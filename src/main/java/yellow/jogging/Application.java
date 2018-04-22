@@ -45,7 +45,7 @@ public class Application {
         Properties prop = new Properties();
         prop.put("hibernate.format_sql", "true");
         prop.put("hibernate.show_sql", "false");
-        prop.put("hibernate.dialect", " org.hibernate.dialect.PostgreSQL82Dialect ");
+        prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         return prop;
     }
 
