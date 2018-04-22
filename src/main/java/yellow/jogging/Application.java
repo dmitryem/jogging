@@ -54,7 +54,7 @@ public class Application {
 
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("postgres://zrmqbvqfquoaeh:939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8@ec2-54-228-181-43.eu-west-1.compute.amazonaws.com:5432/d6d4cf4jks458d");
+        ds.setUrl("jdbc:postgres://zrmqbvqfquoaeh:939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8@ec2-54-228-181-43.eu-west-1.compute.amazonaws.com:5432/d6d4cf4jks458d");
         ds.setUsername("zrmqbvqfquoaeh");
         ds.setPassword("939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8");
         return ds;
