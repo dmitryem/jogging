@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee7201dc-1695-484b-bb92-377e38101ea8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+            <state relative-caret-position="278">
+              <caret line="46" column="48" lean-forward="true" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1096#1097#0" expanded="true" />
@@ -74,7 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JoggingController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#updateJogging#0;class#JoggingController#0" />
+                <element signature="method#deleteJogging#0;class#JoggingController#0" />
+                <element signature="method#getJoggingStatistic#0;class#JoggingController#0" />
+                <element signature="method#validateJogging#0;class#JoggingController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -115,11 +130,11 @@
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/db/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/AuthController.java" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/security/JwtUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/configuration/SecurityConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java" />
       </list>
     </option>
   </component>
@@ -360,12 +375,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1524390685479</updated>
-      <workItem from="1524390690082" duration="25345000" />
+      <workItem from="1524390690082" duration="25743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25345000" />
+    <option name="totallyTimeSpent" value="25743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="21" width="1863" height="1059" extended-state="6" />
@@ -645,20 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#updateJogging#0;class#JoggingController#0" />
-            <element signature="method#deleteJogging#0;class#JoggingController#0" />
-            <element signature="method#getJoggingStatistic#0;class#JoggingController#0" />
-            <element signature="method#validateJogging#0;class#JoggingController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/security/JwtUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -700,22 +701,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/controllers/JoggingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#updateJogging#0;class#JoggingController#0" />
+            <element signature="method#deleteJogging#0;class#JoggingController#0" />
+            <element signature="method#getJoggingStatistic#0;class#JoggingController#0" />
+            <element signature="method#validateJogging#0;class#JoggingController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+        <state relative-caret-position="278">
+          <caret line="46" column="48" lean-forward="true" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1096#1097#0" expanded="true" />
             <element signature="e#1158#1159#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
         </state>
       </provider>
     </entry>
