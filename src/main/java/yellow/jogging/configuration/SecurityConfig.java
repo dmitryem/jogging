@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         RequestHeaderAuthenticationFilter requestHeaderAuthenticationFilter = new RequestHeaderAuthenticationFilter();
         requestHeaderAuthenticationFilter.setPrincipalRequestHeader("X-AUTH-TOKEN");
         requestHeaderAuthenticationFilter.setAuthenticationManager(authenticationManager());
-
+        requestHeaderAuthenticationFilter.setExceptionIfHeaderMissing(false);
         return requestHeaderAuthenticationFilter;
     }
 
