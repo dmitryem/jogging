@@ -45,7 +45,7 @@ public class Application {
         Properties prop = new Properties();
         prop.put("hibernate.format_sql", "true");
         prop.put("hibernate.show_sql", "false");
-        prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        prop.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return prop;
     }
 
@@ -53,10 +53,10 @@ public class Application {
     public BasicDataSource dataSource() {
 
         BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("jdbc:postgres://zrmqbvqfquoaeh:939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8@ec2-54-228-181-43.eu-west-1.compute.amazonaws.com:5432/d6d4cf4jks458d");
-        ds.setUsername("zrmqbvqfquoaeh");
-        ds.setPassword("939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8");
+        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setUrl("jdbc:mysql://localhost:3306/yellow");
+        ds.setUsername("root");
+        ds.setPassword("kind6iVy");
         return ds;
     }
 

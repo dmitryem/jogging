@@ -2,6 +2,7 @@ package yellow.jogging.configuration;
 
 
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         RequestHeaderAuthenticationFilter requestHeaderAuthenticationFilter = new RequestHeaderAuthenticationFilter();
         requestHeaderAuthenticationFilter.setPrincipalRequestHeader("X-AUTH-TOKEN");
         requestHeaderAuthenticationFilter.setAuthenticationManager(authenticationManager());
-        requestHeaderAuthenticationFilter.setExceptionIfHeaderMissing(false);
+        requestHeaderAuthenticationFilter.setExceptionIfHeaderMissing(true);
         return requestHeaderAuthenticationFilter;
     }
 
@@ -47,7 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public TokenAuthenticationProvider tokenAuthenticationProvider() {
         return new TokenAuthenticationProvider();
     }
-
 
 
 

@@ -52,7 +52,7 @@ public class JoggingController {
     }
 
     @PostMapping
-    public ResponseEntity createJogging(@RequestPart("json") Jogging jogging) {
+    public ResponseEntity createJogging(@RequestBody Jogging jogging) {
         Map<String, Object> answer = new HashMap<>();
         boolean hasError = false;
         List<String> errors = validateJogging(jogging);
