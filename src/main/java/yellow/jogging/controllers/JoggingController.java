@@ -12,6 +12,7 @@ import yellow.jogging.db.dao.JoggingDao;
 import yellow.jogging.db.dao.exceptions.SessionCreationException;
 import yellow.jogging.db.dao.exceptions.UnatharizedAccessException;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,21 +22,22 @@ import java.util.*;
 public class JoggingController extends Controller {
 
     private SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-    private Calendar calendar = Calendar.getInstance();
 
     @Autowired
-    JoggingDao joggingDao;
+    private JoggingDao joggingDao;
 
 
     @GetMapping
-    public ResponseEntity getJogging(@RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity getJogging(@RequestParam(value = "id", required = false) Integer id,
+                                     @RequestParam(value = "joggingOffset", required = false, defaultValue = "0") int offset,
+                                     @RequestParam(value = "joggingPerPage", required = false, defaultValue = "50") int perPage) {
 
         return businessLogic(answer -> {
             boolean hasError = false;
             if (id == null) {
-                List<Jogging> joggingList = joggingDao.getJoggingList();
+                List<Jogging> joggingList = joggingDao.getJoggingList(offset,perPage);
                 answer.put("list", joggingList);
-                answer.put("totalNumRecords", joggingList.size());
+                answer.put("totalNumRecords", joggingDao.getJoggingCount());
             } else {
                 Jogging jogging = joggingDao.getJogging(id);
                 if (jogging == null) {
@@ -104,24 +106,30 @@ public class JoggingController extends Controller {
     public ResponseEntity getJoggingStatistic(@RequestParam(value = "weeksOffset", required = false, defaultValue = "0") int offset,
                                               @RequestParam(value = "weeksPerPage", required = false, defaultValue = "50") int perPage) {
         return businessLogic(
-
                 answer -> {
                     boolean hasError = false;
                     List<Statistic> statistics = joggingDao.getJoggingListForPeriod(offset, perPage);
-                    for(Statistic statistic : statistics) {
+                    if (statistics != null) {
+                        for (Statistic statistic : statistics) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+                            calendar.set(Calendar.WEEK_OF_YEAR, statistic.getWeekNumber() + 1);
+                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                            String begin = dt.format(calendar.getTime());
+                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                            String end = dt.format(calendar.getTime());
+                            statistic.setWeekRange("( " + begin + " / " + end + " )");
+                        }
+                        answer.put("statistic", statistics);
+                        answer.put("totalNumWeeks", joggingDao.getWeeksCount());
 
-                        calendar.set(Calendar.WEEK_OF_YEAR, statistic.getWeekNumber());
-                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                        String begin =  dt.format(calendar.getTime());
-                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-                        String end =  dt.format(calendar.getTime());
-                        statistic.setWeekRange("( "+ begin + " / " +end+ " )");
+                    } else {
+                        hasError = true;
+                        answer.put("errorMessage","Can't get statistic");
                     }
-                    answer.put("statistic",statistics);
                     return hasError;
 
-                }, null
-        );
+                }, null);
     }
 
 

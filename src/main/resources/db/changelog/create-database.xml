@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="01" author="demelyanov">
+        <preConditions >
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user">
+
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(40)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement catalogName="yellow"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="yellow"
+                          startWith="0"
+                          tableName="user"/>
+    </changeSet>
+
+    <changeSet id="02" author="demelyanov">
+        <preConditions>
+            <not>
+
+
+                <tableExists tableName="jogging"/>
+            </not>
+        </preConditions>
+        <createTable tableName="jogging">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="distance" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jogging_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+
+        <addAutoIncrement catalogName="yellow"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="yellow"
+                          startWith="0"
+                          tableName="jogging"/>
+    </changeSet>
+
+    <changeSet id="03" author="demelyanov">
+        <preConditions >
+            <not>
+                <foreignKeyConstraintExists foreignKeyTableName="jogging" foreignKeyName="user_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="jogging" baseColumnNames="user_id"
+                                 constraintName="user_fk"
+                                 referencedTableName="user" referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

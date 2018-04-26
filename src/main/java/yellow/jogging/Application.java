@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,7 +41,7 @@ public class Application {
         Properties prop = new Properties();
         prop.put("hibernate.format_sql", "true");
         prop.put("hibernate.show_sql", "true");
-        prop.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        prop.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         return prop;
     }
 
@@ -49,7 +50,7 @@ public class Application {
 
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/yellow");
+        ds.setUrl("jdbc:mysql://localhost:3306/yellow?nullNamePatternMatchesAll=true");
         ds.setUsername("root");
         ds.setPassword("kind6iVy");
         return ds;
