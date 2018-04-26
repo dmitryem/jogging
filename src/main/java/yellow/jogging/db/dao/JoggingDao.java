@@ -1,107 +1,128 @@
 package yellow.jogging.db.dao;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.hibernate.criterion.*;
+import org.hibernate.type.IntegerType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import yellow.jogging.beans.Jogging;
-import yellow.jogging.beans.User;
+import yellow.jogging.beans.Statistic;
+import yellow.jogging.db.dao.exceptions.SessionCreationException;
+import yellow.jogging.db.dao.exceptions.UnatharizedAccessException;
+
+import org.hibernate.type.Type;
 
 import javax.validation.constraints.NotNull;
-import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Repository
-public class JoggingDao {
+public class JoggingDao extends AuthorizedDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
 
     @Transactional
-    public List<Jogging> getJoggingList() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(Jogging.class);
-        criteria.createAlias("user", "user");
-        criteria.add(Restrictions.eq("user.id", user.getId()));
-        List<Jogging> list = (List<Jogging>) criteria.list();
-        session.close();
-        return list;
+    public List<Jogging> getJoggingList() throws UnatharizedAccessException, SessionCreationException {
+        AtomicReference<List<Jogging>> list = new AtomicReference<>();
+        workWithSession((user, session) -> {
+            Criteria criteria = session.createCriteria(Jogging.class);
+            criteria.createAlias("user", "user");
+            criteria.add(Restrictions.eq("user.id", user.getId()));
+            list.set(criteria.list());
+        });
+        return list.get();
     }
 
-    @Transactional
-    public List<Jogging> getJoggingListForPeriod(Date dateFrom, Date dateTo) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(Jogging.class);
-        criteria.createAlias("user", "user");
-        criteria.add(Restrictions.eq("user.id", user.getId()));
-        criteria.add(Restrictions.between("date",dateFrom,dateTo));
-        List<Jogging> list = (List<Jogging>) criteria.list();
-        session.close();
-        return list;
-    }
 
     @Transactional
-    public Jogging getJogging(int id) {
-        Jogging result;
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(Jogging.class);
-        criteria.createAlias("user", "user");
-        criteria.add(Restrictions.eq("user.id", user.getId()));
-        criteria.add(Restrictions.eq("id", id));
-        result = (Jogging) criteria.uniqueResult();
-        session.close();
+    public List<Statistic> getJoggingListForPeriod(int offset, int perPage) throws UnatharizedAccessException, SessionCreationException {
+        AtomicReference<List> list = new AtomicReference<>();
+        workWithSession((user, session) -> {
+            Criteria criteria = session.createCriteria(Jogging.class);
+            ProjectionList projectionList = Projections.projectionList()
+                    .add(Projections.sqlGroupProjection("week(jogging_date) as week",
+                            "week",
+                            new String[]{"week"},
+                            new Type[]{IntegerType.INSTANCE}))
+                    .add(Projections.sum("distance"))
+                    .add(Projections.sum("duration"))
+                    .add(Projections.avg("duration"));
+            criteria.setProjection(projectionList);
+            criteria.createAlias("user", "user");
+            criteria.add(Restrictions.eq("user.id", user.getId()));
+            criteria.setFirstResult(offset);
+            criteria.setMaxResults(perPage);
+            list.set(criteria.list());
+        });
+        List<Statistic> result = new ArrayList<>();
+        for(Object[] item : (List<Object[]>)list.get()){
+            Statistic statistic = new Statistic();
+            statistic.setWeekNumber((Integer) item[0]);
+            statistic.setTotalDistance((Long) item[1]);
+            statistic.setAvSpeed(Double.valueOf((Long) item[1])/((Long) item[2]));
+            statistic.setAvTime((Double) item[3]);
+            result.add(statistic);
+        }
         return result;
+    }
+
+    @Transactional
+    public Jogging getJogging(int id) throws UnatharizedAccessException, SessionCreationException {
+        AtomicReference<Jogging> result = new AtomicReference<>();
+        workWithSession((user, session) -> {
+            Criteria criteria = session.createCriteria(Jogging.class);
+            criteria.createAlias("user", "user");
+            criteria.add(Restrictions.eq("user.id", user.getId()));
+            criteria.add(Restrictions.eq("id", id));
+            result.set((Jogging) criteria.uniqueResult());
+        });
+        return result.get();
 
     }
 
     @Transactional
-    public void createJogging(@NotNull Jogging jogging) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        jogging.setUser(user);
-        Session session = sessionFactory.openSession();
-        session.save(jogging);
-        session.close();
+    public void createJogging(@NotNull Jogging jogging) throws UnatharizedAccessException, SessionCreationException {
+        if (jogging != null) {
+            workWithSession((user, session) -> {
+                jogging.setUser(user);
+                session.save(jogging);
+            });
+        }
     }
 
     @Transactional
-    public boolean updateJogging(@NotNull Jogging jogging) {
-        boolean updated;
-        Jogging dbJogging = getJogging(jogging.getId());
-        if (dbJogging != null) {
-            dbJogging.setDate(jogging.getDate());
-            dbJogging.setDuration(jogging.getDuration());
-            dbJogging.setDistance(jogging.getDistance());
-            Session session = sessionFactory.openSession();
-            session.saveOrUpdate(dbJogging);
-            session.flush();
-            session.close();
-            updated = true;
-        } else {
-            updated = false;
+    public boolean updateJogging(@NotNull Jogging jogging) throws UnatharizedAccessException, SessionCreationException {
+        boolean updated = false;
+        if (jogging != null) {
+            Jogging dbJogging = getJogging(jogging.getId());
+            if (dbJogging != null) {
+                dbJogging.setDate(jogging.getDate());
+                dbJogging.setDuration(jogging.getDuration());
+                dbJogging.setDistance(jogging.getDistance());
+                workWithSession((user, session) -> {
+                    session.saveOrUpdate(dbJogging);
+                    session.flush();
+                });
+                updated = true;
+            } else {
+                updated = false;
+            }
         }
         return updated;
     }
 
     @Transactional
-    public boolean deleteJogging(int id) {
+    public boolean deleteJogging(int id) throws UnatharizedAccessException, SessionCreationException {
         boolean deleted;
         Jogging dbJogging = getJogging(id);
         if (dbJogging != null) {
-            Session session = sessionFactory.openSession();
-            session.delete(dbJogging);
-            session.flush();
-            session.close();
+            workWithSession((user, session) -> {
+                session.delete(dbJogging);
+                session.flush();
+            });
             deleted = true;
-        }else{
+        } else {
             deleted = false;
         }
         return deleted;

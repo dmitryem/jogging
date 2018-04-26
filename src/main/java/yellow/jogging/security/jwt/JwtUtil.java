@@ -1,4 +1,4 @@
-package yellow.jogging.security;
+package yellow.jogging.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import static yellow.jogging.security.SecurityConstants.SECRET;
+
 
 @Component
 public class JwtUtil {
@@ -17,7 +19,7 @@ public class JwtUtil {
         User user = new User();
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey("asd46Q54asd21jfmaF4165")
+                    .setSigningKey(SECRET.getBytes())
                     .parseClaimsJws(token)
                     .getBody();
             user.setId(Integer.parseInt(claims.getId()));
@@ -43,7 +45,7 @@ public class JwtUtil {
                 .setId(String.valueOf(user.getId()))
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + TimeUnit.MINUTES.toMillis(10L)))
-                .signWith(io.jsonwebtoken.SignatureAlgorithm.HS256, "asd46Q54asd21jfmaF4165")
+                .signWith(io.jsonwebtoken.SignatureAlgorithm.HS256, SECRET.getBytes())
                 .compact();
     }
 
