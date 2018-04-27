@@ -6,6 +6,7 @@ import org.hibernate.criterion.*;
 import org.hibernate.type.IntegerType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import yellow.jogging.beans.Image;
 import yellow.jogging.beans.Jogging;
 import yellow.jogging.beans.Statistic;
 import yellow.jogging.beans.User;
@@ -26,7 +27,7 @@ public class JoggingDao extends AuthorizedDao {
 
 
     @Transactional
-    public List<Jogging> getJoggingList(int offset,int perPage) throws UnatharizedAccessException, SessionCreationException {
+    public List<Jogging> getJoggingList(int offset, int perPage) throws UnatharizedAccessException, SessionCreationException {
         AtomicReference<List<Jogging>> list = new AtomicReference<>();
         workWithSession((user, session) -> {
             Criteria criteria = session.createCriteria(Jogging.class);
@@ -98,7 +99,7 @@ public class JoggingDao extends AuthorizedDao {
             criteria.setProjection(projectionList);
             criteria.createAlias("user", "user");
             criteria.add(Restrictions.eq("user.id", user.getId()));
-            count.set((int)criteria.uniqueResult());
+            count.set((int) criteria.uniqueResult());
         });
         return count.get();
     }
@@ -164,4 +165,25 @@ public class JoggingDao extends AuthorizedDao {
         }
         return deleted;
     }
+
+
+    @Transactional
+    public boolean addImagesToJogging(int id, List<Image> images) throws UnatharizedAccessException, SessionCreationException {
+        boolean updated;
+        Jogging dbJogging = getJogging(id);
+        if (dbJogging != null) {
+            workWithSession((user, session) -> {
+                for (Image image : images) {
+                    image.setJogging(id);
+                    session.save(image);
+                }
+            });
+            updated = true;
+        } else {
+            updated = false;
+        }
+        return updated;
+    }
+
+
 }

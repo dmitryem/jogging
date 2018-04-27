@@ -2,17 +2,25 @@ package yellow.jogging.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
 
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import yellow.jogging.beans.Image;
 import yellow.jogging.beans.Jogging;
 import yellow.jogging.beans.Statistic;
+import yellow.jogging.cloudinary.CloudinaryUploader;
+import yellow.jogging.cloudinary.exceptions.CloudinaryInitializeException;
+import yellow.jogging.cloudinary.exceptions.CloudinaryUploadException;
 import yellow.jogging.db.dao.JoggingDao;
 import yellow.jogging.db.dao.exceptions.SessionCreationException;
 import yellow.jogging.db.dao.exceptions.UnatharizedAccessException;
 
 import javax.annotation.PostConstruct;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -22,6 +30,9 @@ import java.util.*;
 public class JoggingController extends Controller {
 
     private SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+
+    @Value("${custom.folder.path}")
+    private String imagePath;
 
     @Autowired
     private JoggingDao joggingDao;
@@ -68,7 +79,7 @@ public class JoggingController extends Controller {
     }
 
     @PutMapping
-    public ResponseEntity updateJogging(@RequestBody Jogging jogging) {
+    public ResponseEntity updateJogging(@RequestPart(name = "jogging") Jogging jogging) {
         return businessLogic(answer -> {
             boolean hasError = false;
             List<String> errors = validateJogging(jogging);
@@ -132,6 +143,37 @@ public class JoggingController extends Controller {
                 }, null);
     }
 
+
+    @PostMapping("/images")
+    public ResponseEntity uploadImages(@RequestParam(value = "id") int id, @RequestParam("files") MultipartFile[] files){
+        return businessLogic(answer -> {
+            boolean hasError = false;
+            if(files.length != 0){
+                if(null != joggingDao.getJogging(id)){
+                    CloudinaryUploader uploader = CloudinaryUploader.getInstance();
+                    if(uploader != null){
+                        List<Image> images = uploader.uploadImage(id,files);
+                        if(images != null){
+                            boolean updated = joggingDao.addImagesToJogging(id,images);
+                            hasError = !updated;
+                        }else {
+                            throw new CloudinaryUploadException("Can't upload images");
+                        }
+                    }else{
+                        throw new CloudinaryInitializeException("Can't initialize cloudinary");
+                    }
+                }else{
+                    hasError = true;
+                    answer.put("errorMessage",String.format("Can't find jogging for id %s", id));
+                }
+
+            }else{
+                hasError = true;
+                answer.put("errorMessage","Nothing to upload");
+            }
+            return hasError;
+        },HttpStatus.CREATED);
+    }
 
     private List<String> validateJogging(Jogging jogging) {
         List<String> errorMessages = new ArrayList<>();

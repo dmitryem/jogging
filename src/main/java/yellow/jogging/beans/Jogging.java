@@ -7,6 +7,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,6 +21,7 @@ public class Jogging {
     private int duration;
     private Date date;
     private User user;
+    private List<Image> images;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -67,5 +69,14 @@ public class Jogging {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @OneToMany(mappedBy ="id",fetch = FetchType.EAGER)
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

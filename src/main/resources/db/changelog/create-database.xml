@@ -73,14 +73,53 @@
     </changeSet>
 
     <changeSet id="03" author="demelyanov">
+        <preConditions>
+            <not>
+                <tableExists tableName="image"/>
+            </not>
+        </preConditions>
+        <createTable tableName="image">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="url" type="varchar(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jogging_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement catalogName="yellow"
+                          columnDataType="int"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="yellow"
+                          startWith="0"
+                          tableName="image"/>
+    </changeSet>
+
+
+    <changeSet id="04" author="demelyanov">
         <preConditions >
             <not>
-                <foreignKeyConstraintExists foreignKeyTableName="jogging" foreignKeyName="user_fk"/>
+                <foreignKeyConstraintExists  foreignKeyName="user_fk"/>
             </not>
         </preConditions>
         <addForeignKeyConstraint baseTableName="jogging" baseColumnNames="user_id"
                                  constraintName="user_fk"
                                  referencedTableName="user" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="05" author="demelyanov">
+        <preConditions >
+            <not>
+                <foreignKeyConstraintExists  foreignKeyName="image_fk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="image" baseColumnNames="jogging_id"
+                                 constraintName="image_fk"
+                                 referencedTableName="jogging" referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>

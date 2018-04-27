@@ -2,6 +2,8 @@ package yellow.jogging.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import yellow.jogging.cloudinary.exceptions.CloudinaryInitializeException;
+import yellow.jogging.cloudinary.exceptions.CloudinaryUploadException;
 import yellow.jogging.controllers.interfaces.ControllerCommand;
 import yellow.jogging.db.dao.exceptions.SessionCreationException;
 import yellow.jogging.db.dao.exceptions.UnatharizedAccessException;
@@ -32,6 +34,9 @@ public abstract class Controller {
 
         } catch (SessionCreationException e) {
             response = error(answer,"Error with database session connection. Try again later.",
+                    HttpStatus.INTERNAL_SERVER_ERROR );
+        } catch (CloudinaryInitializeException | CloudinaryUploadException c){
+            response = error(answer,"Error while initializing image service. Try again later.",
                     HttpStatus.INTERNAL_SERVER_ERROR );
         }
         return response;
