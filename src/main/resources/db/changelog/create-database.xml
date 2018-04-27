@@ -13,7 +13,7 @@
                 <tableExists tableName="user"/>
             </not>
         </preConditions>
-        <createTable tableName="user" schemaName="yellow">
+        <createTable tableName="user" >
 
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
@@ -43,7 +43,7 @@
                 <tableExists tableName="jogging"/>
             </not>
         </preConditions>
-        <createTable tableName="jogging" schemaName="yellow">
+        <createTable tableName="jogging" >
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -78,7 +78,7 @@
                 <tableExists tableName="image"/>
             </not>
         </preConditions>
-        <createTable tableName="image" schemaName="yellow">
+        <createTable tableName="image" >
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
