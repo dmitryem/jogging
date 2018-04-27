@@ -30,7 +30,6 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="public"
                           startWith="0"
                           tableName="user"/>
     </changeSet>
@@ -67,7 +66,6 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="public"
                           startWith="0"
                           tableName="jogging"/>
     </changeSet>
@@ -94,7 +92,6 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="public"
                           startWith="0"
                           tableName="image"/>
     </changeSet>
