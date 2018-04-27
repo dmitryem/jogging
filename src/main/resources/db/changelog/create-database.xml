@@ -10,10 +10,10 @@
     <changeSet id="01" author="demelyanov">
         <preConditions >
             <not>
-                <tableExists tableName="user" schemaName="public"/>
+                <tableExists tableName="person" schemaName="public"/>
             </not>
         </preConditions>
-        <createTable tableName="user" schemaName="public" >
+        <createTable tableName="person" schemaName="public" >
 
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
@@ -31,7 +31,7 @@
                           columnName="id"
                           incrementBy="1"
                           startWith="0"
-                          tableName="user"/>
+                          tableName="person"/>
     </changeSet>
 
     <changeSet id="02" author="demelyanov">
@@ -105,7 +105,7 @@
         </preConditions>
         <addForeignKeyConstraint baseTableName="jogging" baseColumnNames="user_id"
                                  constraintName="user_fk"
-                                 referencedTableName="user" referencedColumnNames="id"/>
+                                 referencedTableName="person" referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="05" author="demelyanov">
