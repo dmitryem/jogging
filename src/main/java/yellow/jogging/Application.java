@@ -3,6 +3,7 @@ package yellow.jogging;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -49,10 +51,10 @@ public class Application {
     public BasicDataSource dataSource() {
 
         BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/yellow?nullNamePatternMatchesAll=true");
-        ds.setUsername("root");
-        ds.setPassword("kind6iVy");
+        ds.setDriverClassName("org.postgresql.Driver");
+        ds.setUrl("jdbc:" + dbUrl);
+        ds.setUsername("zrmqbvqfquoaeh");
+        ds.setPassword("939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8");
         return ds;
     }
 
