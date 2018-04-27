@@ -44,6 +44,7 @@ public class Application {
         prop.put("hibernate.format_sql", "true");
         prop.put("hibernate.show_sql", "true");
         prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        prop.put("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return prop;
     }
 
