@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Entity
-@Table(name = "person")
+@Table(name = "user")
 public class User implements UserDetails {
 
     private int id;

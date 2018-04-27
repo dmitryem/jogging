@@ -13,7 +13,7 @@
                 <tableExists tableName="person"/>
             </not>
         </preConditions>
-        <createTable tableName="person" >
+        <createTable tableName="user" >
 
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
@@ -32,7 +32,7 @@
                           incrementBy="1"
                           schemaName="yellow"
                           startWith="0"
-                          tableName="person"/>
+                          tableName="user"/>
     </changeSet>
 
     <changeSet id="02" author="demelyanov">
@@ -67,7 +67,7 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="yellow"
+                          schemaName="public"
                           startWith="0"
                           tableName="jogging"/>
     </changeSet>
@@ -94,7 +94,7 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="yellow"
+                          schemaName="public"
                           startWith="0"
                           tableName="image"/>
     </changeSet>
@@ -108,7 +108,7 @@
         </preConditions>
         <addForeignKeyConstraint baseTableName="jogging" baseColumnNames="user_id"
                                  constraintName="user_fk"
-                                 referencedTableName="person" referencedColumnNames="id"/>
+                                 referencedTableName="user" referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="05" author="demelyanov">
