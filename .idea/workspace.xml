@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ee7201dc-1695-484b-bb92-377e38101ea8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,23 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create-database.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create-database.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="58" column="30" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-253">
+              <caret line="80" column="58" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -91,7 +78,13 @@
       <find>addForeignKeyConstraint</find>
       <find>yellow</find>
       <find>user</find>
+      <find>&quot;user</find>
+      <find>person</find>
     </findStrings>
+    <replaceStrings>
+      <replace>public</replace>
+      <replace>user</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -141,8 +134,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java" />
         <option value="$PROJECT_DIR$/test.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml" />
         <option value="$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml" />
       </list>
     </option>
   </component>
@@ -371,7 +364,7 @@
       <workItem from="1524747466634" duration="58000" />
       <workItem from="1524776124400" duration="19362000" />
       <workItem from="1524820385456" duration="2225000" />
-      <workItem from="1524822843663" duration="4321000" />
+      <workItem from="1524822843663" duration="5124000" />
     </task>
     <task id="LOCAL-00001" summary="first commit to github">
       <created>1524607527744</created>
@@ -450,11 +443,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524826045866</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="system postgre user table">
+      <created>1524827327032</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1524827327033</updated>
+    </task>
+    <task id="LOCAL-00013" summary="schene config">
+      <created>1524831536957</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1524831536957</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69578000" />
+    <option name="totallyTimeSpent" value="70381000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,7 +485,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.27729085" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.43543223" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.1590909" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.108766235" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.21771611" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Persistence" order="2" side_tool="true" />
@@ -487,6 +494,7 @@
       <window_info anchor="right" id="Bean Validation" order="3" weight="0.3294893" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" sideWeight="0.49827588" weight="0.1867106" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32977587" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -499,7 +507,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32977587" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +552,9 @@
     <MESSAGE value="schema liqubase config" />
     <MESSAGE value="exception fix" />
     <MESSAGE value="schema error" />
-    <option name="LAST_COMMIT_MESSAGE" value="schema error" />
+    <MESSAGE value="system postgre user table" />
+    <MESSAGE value="schene config" />
+    <option name="LAST_COMMIT_MESSAGE" value="schene config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -938,16 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="58" column="18" lean-forward="true" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/liquibase-changelog.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -962,20 +961,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="58" column="30" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/beans/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="23" column="19" lean-forward="true" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        <state relative-caret-position="29">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="58" column="18" lean-forward="true" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="80" column="58" selection-start-line="80" selection-start-column="58" selection-end-line="80" selection-end-column="58" />
         </state>
       </provider>
     </entry>

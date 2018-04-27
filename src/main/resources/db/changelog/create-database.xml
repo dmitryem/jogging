@@ -10,10 +10,10 @@
     <changeSet id="01" author="demelyanov">
         <preConditions >
             <not>
-                <tableExists tableName="person"/>
+                <tableExists tableName="user" schemaName="public"/>
             </not>
         </preConditions>
-        <createTable tableName="user" >
+        <createTable tableName="user" schemaName="public" >
 
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
@@ -30,7 +30,7 @@
                           columnDataType="int"
                           columnName="id"
                           incrementBy="1"
-                          schemaName="yellow"
+                          schemaName="public"
                           startWith="0"
                           tableName="user"/>
     </changeSet>
@@ -40,10 +40,10 @@
             <not>
 
 
-                <tableExists tableName="jogging"/>
+                <tableExists tableName="jogging" schemaName="public"/>
             </not>
         </preConditions>
-        <createTable tableName="jogging" >
+        <createTable tableName="jogging" schemaName="public" >
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -75,10 +75,10 @@
     <changeSet id="03" author="demelyanov">
         <preConditions>
             <not>
-                <tableExists tableName="image"/>
+                <tableExists tableName="image" schemaName="public"/>
             </not>
         </preConditions>
-        <createTable tableName="image" >
+        <createTable tableName="image" schemaName="public" >
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
