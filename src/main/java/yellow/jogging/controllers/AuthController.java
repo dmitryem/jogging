@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +38,11 @@ public class AuthController extends Controller {
     public ResponseEntity login(@RequestParam String username, String password) {
         return businessLogic(answer -> {
             boolean hasError = false;
-            User user = (User) userDetailsService.loadUserByUsername(username);
-            if (passwordEncoder.matches(password, user.getPassword())) {
-                answer.put("token", jwtUtil.createAccessToken(user));
+            UserDetails user =  userDetailsService.loadUserByUsername(username);
+            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+                answer.put("token", jwtUtil.createAccessToken((User)user));
             } else {
-                answer.put("errorMessage", "Check your conditionals and try again");
+                answer.put("errorMessage", "Check your creditionals and try again");
                 hasError = true;
             }
             return hasError;
