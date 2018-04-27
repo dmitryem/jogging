@@ -52,7 +52,7 @@ public class Application {
 
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("jdbc:" + dbUrl);
+        ds.setUrl(dbUrl);
         ds.setUsername("zrmqbvqfquoaeh");
         ds.setPassword("939c859703ac7978f4fed34738425428fc9bb200446287f5f1069fb8dcc20db8");
         return ds;
