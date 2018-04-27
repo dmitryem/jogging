@@ -50,26 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#744#745#0" expanded="true" />
-                <element signature="e#817#843#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="create-database.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
+            <state relative-caret-position="300">
+              <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -362,7 +347,7 @@
       <workItem from="1524747466634" duration="58000" />
       <workItem from="1524776124400" duration="19362000" />
       <workItem from="1524820385456" duration="2225000" />
-      <workItem from="1524822843663" duration="1141000" />
+      <workItem from="1524822843663" duration="1803000" />
     </task>
     <task id="LOCAL-00001" summary="first commit to github">
       <created>1524607527744</created>
@@ -399,11 +384,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524823969204</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="liquebase heroku config">
+      <created>1524824164989</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1524824164989</updated>
+    </task>
+    <task id="LOCAL-00007" summary="dialect heroku config">
+      <created>1524824306928</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1524824306928</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66398000" />
+    <option name="totallyTimeSpent" value="67060000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -427,12 +426,12 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.27729085" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.43543223" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.24837662" />
+      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.31006494" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.21771611" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Persistence" order="2" side_tool="true" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14900398" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09083665" />
       <window_info anchor="right" id="Bean Validation" order="3" weight="0.3294893" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" sideWeight="0.49827588" weight="0.1867106" />
@@ -489,7 +488,9 @@
     <MESSAGE value="add pagination, correct date format, add liquebase simple support" />
     <MESSAGE value="add image upload" />
     <MESSAGE value="postgre url misconfig" />
-    <option name="LAST_COMMIT_MESSAGE" value="postgre url misconfig" />
+    <MESSAGE value="liquebase heroku config" />
+    <MESSAGE value="dialect heroku config" />
+    <option name="LAST_COMMIT_MESSAGE" value="dialect heroku config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -892,13 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3">
@@ -906,23 +900,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/yellow/jogging/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+        <state relative-caret-position="91">
+          <caret line="45" column="78" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#817#843#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/changelog/create-database.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="102" column="37" selection-start-line="102" selection-start-column="37" selection-end-line="102" selection-end-column="37" />
+        <state relative-caret-position="300">
+          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
         </state>
       </provider>
     </entry>
